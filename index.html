@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050806">
+  <meta name="description" content="LIDA — conecta, comparte y descubre.">
+  <title>LIDA</title>
+  <link rel="icon" href="./assets/icons/lida-mark.svg" type="image/svg+xml">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./src/styles/tokens.css">
+  <link rel="stylesheet" href="./src/styles/base.css">
+  <link rel="stylesheet" href="./src/styles/components.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#chats" aria-label="LIDA inicio">
+        <span class="brand-mark" aria-hidden="true">L</span><span>LIDA</span>
+      </a>
+      <div class="topbar-actions">
+        <button class="icon-button" id="search-button" aria-label="Buscar" title="Buscar">⌕</button>
+        <button class="avatar avatar-small" id="profile-shortcut" aria-label="Abrir perfil">D</button>
+      </div>
+    </header>
+
+    <main id="app-main" tabindex="-1">
+      <section class="view active" id="view-chats" data-view="chats">
+        <div class="section-heading">
+          <div><p class="eyebrow">TU ESPACIO</p><h1>Chats</h1></div>
+          <button class="primary-button" id="new-chat-button">＋ <span>Nuevo</span></button>
+        </div>
+        <label class="search-field"><span aria-hidden="true">⌕</span><input id="chat-search" type="search" placeholder="Buscar conversaciones" autocomplete="off"></label>
+        <div class="filter-row" role="group" aria-label="Filtrar conversaciones">
+          <button class="filter-chip selected" data-filter="all">Todos</button>
+          <button class="filter-chip" data-filter="unread">No leídos</button>
+          <button class="filter-chip" data-filter="favorites">Favoritos</button>
+        </div>
+        <div id="chat-list" class="chat-list" aria-live="polite"></div>
+        <div class="empty-state hidden" id="chat-empty"><span class="empty-icon">◌</span><h2>No hay conversaciones</h2><p>Cuando empieces a conversar, aparecerán aquí.</p></div>
+      </section>
+
+      <section class="view" id="view-conversation" data-view="conversation">
+        <div class="conversation-header">
+          <button class="icon-button" id="back-to-chats" aria-label="Volver a Chats">←</button>
+          <div class="avatar" id="conversation-avatar">M</div>
+          <div class="conversation-person"><h1 id="conversation-name">Contacto</h1><p id="conversation-status">Disponible</p></div>
+          <button class="icon-button" aria-label="Más opciones" id="conversation-menu">⋯</button>
+        </div>
+        <div id="message-list" class="message-list" aria-live="polite"></div>
+        <form id="message-form" class="composer">
+          <button type="button" class="icon-button composer-plus" aria-label="Adjuntar archivo" id="attach-button">＋</button>
+          <input id="message-input" type="text" maxlength="2000" placeholder="Escribe un mensaje…" autocomplete="off" aria-label="Escribe un mensaje">
+          <button class="send-button" type="submit" aria-label="Enviar mensaje">➤</button>
+        </form>
+        <p class="demo-notice">Modo demostración: los mensajes se guardan solo en este dispositivo.</p>
+      </section>
+
+      <section class="view" id="view-estados" data-view="estados">
+        <div class="section-heading"><div><p class="eyebrow">MOMENTOS</p><h1>Estados</h1></div><button class="primary-button" id="new-status-button">＋ <span>Mi estado</span></button></div>
+        <article class="own-status-card">
+          <div class="status-ring"><div class="avatar avatar-large">D</div></div>
+          <div class="status-copy"><h2>Mi estado</h2><p>Comparte algo con tus contactos</p></div>
+          <button class="icon-button" id="status-add" aria-label="Crear estado">＋</button>
+        </article>
+        <h2 class="subheading">Recientes</h2>
+        <div class="status-list" id="status-list"></div>
+        <div class="empty-state"><span class="empty-icon">◌</span><h2>Tu espacio para compartir</h2><p>Los estados de tus contactos aparecerán aquí cuando estén disponibles.</p></div>
+      </section>
+
+      <section class="view" id="view-play" data-view="play">
+        <div class="section-heading"><div><p class="eyebrow">DESCUBRE</p><h1>LIDA Play</h1></div><span class="live-dot">EN DESARROLLO</span></div>
+        <div class="feature-hero play-hero"><div class="hero-orb">▶</div><p class="eyebrow">TU PRÓXIMO DESCUBRIMIENTO</p><h2>Contenido que conecta contigo.</h2><p>Un espacio para descubrir contenido y creadores. La integración de contenido real llegará en una fase posterior.</p></div>
+        <div class="feature-grid"><article class="feature-tile"><span>♫</span><h3>Música</h3><p>Experiencias de audio</p></article><article class="feature-tile"><span>✦</span><h3>Creadores</h3><p>Voces por descubrir</p></article></div>
+      </section>
+
+      <section class="view" id="view-reels" data-view="reels">
+        <div class="section-heading"><div><p class="eyebrow">EN VERTICAL</p><h1>Reels</h1></div><span class="live-dot">EN DESARROLLO</span></div>
+        <div class="reels-placeholder"><div class="reels-glow"></div><span class="reels-play">▶</span><h2>Historias en movimiento</h2><p>El reproductor vertical se integrará cuando esté definida la fuente de contenido.</p></div>
+      </section>
+
+      <section class="view" id="view-profile" data-view="profile">
+        <div class="section-heading"><div><p class="eyebrow">TU IDENTIDAD</p><h1>Perfil</h1></div><button class="icon-button" id="edit-profile-button" aria-label="Editar perfil">✎</button></div>
+        <div class="profile-card"><div class="profile-avatar">D</div><h2 id="profile-display-name">Daniel</h2><p id="profile-handle">@lida_user</p><p class="profile-bio">Construyendo conexiones, a mi manera.</p><button class="secondary-button" id="profile-edit-main">Editar perfil</button></div>
+        <div class="settings-list"><button class="settings-row" id="appearance-button"><span class="settings-icon">◐</span><span><strong>Apariencia</strong><small>Interfaz oscura y acentos neón</small></span><span>›</span></button><button class="settings-row" id="privacy-button"><span class="settings-icon">◇</span><span><strong>Privacidad y seguridad</strong><small>Controles y permisos</small></span><span>›</span></button><button class="settings-row" id="about-button"><span class="settings-icon">ⓘ</span><span><strong>Acerca de LIDA</strong><small>Versión de prototipo</small></span><span>›</span></button></div>
+      </section>
+
+      <section class="view" id="view-ai" data-view="ai">
+        <div class="section-heading"><div><p class="eyebrow">ASISTENTE PERSONAL</p><h1>LIDA AI</h1></div><span class="ai-pulse">✦</span></div>
+        <div class="ai-intro"><div class="ai-orb">✦</div><h2>¿Qué hacemos hoy?</h2><p>Tu espacio para ideas, respuestas y ayuda dentro de LIDA.</p></div>
+        <div class="suggestion-list"><button class="suggestion" data-prompt="Ayúdame a organizar mi día">Organizar mi día <span>↗</span></button><button class="suggestion" data-prompt="Dame ideas para una publicación">Ideas para una publicación <span>↗</span></button><button class="suggestion" data-prompt="Explícame cómo funciona LIDA">Conocer LIDA <span>↗</span></button></div>
+        <div id="ai-messages" class="ai-messages" aria-live="polite"></div>
+        <form id="ai-form" class="composer ai-composer"><input id="ai-input" type="text" maxlength="2000" placeholder="Pregúntale a LIDA AI…" aria-label="Mensaje para LIDA AI"><button class="send-button" type="submit" aria-label="Enviar pregunta">➤</button></form>
+        <p class="demo-notice">Prototipo local: la IA aún no está conectada a un servicio real.</p>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegación principal">
+      <button class="nav-item active" data-target="chats"><span class="nav-icon">▤</span><span>Chats</span></button>
+      <button class="nav-item" data-target="estados"><span class="nav-icon">◉</span><span>Estados</span></button>
+      <button class="nav-item" data-target="play"><span class="nav-icon">▷</span><span>Play</span></button>
+      <button class="nav-item" data-target="reels"><span class="nav-icon">▣</span><span>Reels</span></button>
+      <button class="nav-item" data-target="profile"><span class="nav-icon">◌</span><span>Perfil</span></button>
+      <button class="nav-item ai-nav" data-target="ai"><span class="nav-icon">✦</span><span>AI</span></button>
+    </nav>
+  </div>
+
+  <dialog id="app-dialog" class="app-dialog"><form method="dialog"><button class="dialog-close" aria-label="Cerrar">×</button></form><div id="dialog-content"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>

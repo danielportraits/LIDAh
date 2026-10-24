@@ -1,0 +1,15 @@
+{
+  "name": "LIDA",
+  "short_name": "LIDA",
+  "description": "LIDA — conecta, comparte y descubre.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#050806",
+  "theme_color": "#050806",
+  "icons": [
+    {"src": "./assets/icons/lida-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}
